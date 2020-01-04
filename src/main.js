@@ -18,6 +18,7 @@ import './permission' // permission control
 import './utils/filter' // global filter
 import './components/global.less'
 import i18n from './i18n'
+import './registerServiceWorker'
 
 Vue.config.productionTip = false
 
