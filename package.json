@@ -1,6 +1,6 @@
 {
   "name": "vue-antd-pro",
-  "version": "2.1.0",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -8,8 +8,7 @@
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "build:preview": "vue-cli-service build --mode preview",
-    "lint:nofix": "vue-cli-service lint --no-fix",
-    "postinstall": "opencollective-postinstall"
+    "lint:fix": "vue-cli-service lint --fix"
   },
   "dependencies": {
     "@antv/data-set": "^0.10.2",
@@ -57,9 +56,5 @@
     "webpack-theme-color-replacer": "^1.2.17",
     "opencollective": "^1.0.3",
     "opencollective-postinstall": "^2.0.2"
-  },
-  "collective": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/ant-design-pro-vue"
   }
 }
