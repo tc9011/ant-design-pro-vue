@@ -9,7 +9,8 @@
     "lint": "vue-cli-service lint",
     "build:preview": "vue-cli-service build --mode preview",
     "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/lang/**/*.json'",
-    "lint:fix": "vue-cli-service lint --fix"
+    "lint:fix": "vue-cli-service lint --fix",
+    "commit": "git-cz"
   },
   "dependencies": {
     "@antv/data-set": "^0.10.2",
@@ -38,6 +39,8 @@
   },
   "devDependencies": {
     "@ant-design/colors": "^3.2.1",
+    "@commitlint/cli": "^8.3.4",
+    "@commitlint/config-conventional": "^8.3.4",
     "@kazupon/vue-i18n-loader": "^0.3.0",
     "@vue/cli-plugin-babel": "^4.0.4",
     "@vue/cli-plugin-eslint": "^4.0.4",
@@ -51,17 +54,36 @@
     "babel-eslint": "^10.0.1",
     "babel-plugin-import": "^1.12.2",
     "babel-plugin-transform-remove-console": "^6.9.4",
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.0.2",
     "eslint": "^5.16.0",
     "eslint-plugin-html": "^5.0.0",
     "eslint-plugin-vue": "^5.2.3",
+    "husky": "^3.1.0",
     "imagemin-webpack-plugin": "^2.4.2",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
-    "opencollective": "^1.0.3",
-    "opencollective-postinstall": "^2.0.2",
+    "lint-staged": "^9.5.0",
     "vue-cli-plugin-i18n": "^0.6.0",
     "vue-svg-icon-loader": "^2.1.1",
     "vue-template-compiler": "^2.6.10",
     "webpack-theme-color-replacer": "^1.2.17"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -e $GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js, vue}": [
+      "vue-cli-service lint --fix",
+      "git add"
+    ]
   }
 }
