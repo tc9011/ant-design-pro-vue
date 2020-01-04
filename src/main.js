@@ -17,6 +17,7 @@ import './core/lazy_use'
 import './permission' // permission control
 import './utils/filter' // global filter
 import './components/global.less'
+import i18n from './i18n'
 
 Vue.config.productionTip = false
 
@@ -27,5 +28,6 @@ new Vue({
   router,
   store,
   created: bootstrap,
+  i18n,
   render: h => h(App)
 }).$mount('#app')

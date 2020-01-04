@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const createThemeColorReplacerPlugin = require('./config/plugin.config')
+const ImageminPlugin = require('imagemin-webpack-plugin').default
 
 function resolve (dir) {
   return path.join(__dirname, dir)
@@ -32,7 +33,13 @@ const vueConfig = {
     // webpack plugins
     plugins: [
       // Ignore all locale files of moment.js
-      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+      new ImageminPlugin({
+        disable: process.env.NODE_ENV !== 'production', // Disable during development
+        pngquant: {
+          quality: '80'
+        }
+      })
     ],
     // if prod, add externals
     externals: isProd ? assetsCDN.externals : {}
@@ -41,6 +48,22 @@ const vueConfig = {
   chainWebpack: (config) => {
     config.resolve.alias
       .set('@$', resolve('src'))
+
+    config.resolve.symlinks(true)
+    config.plugin('preload').tap(options => {
+      options[0] = {
+        rel: 'preload',
+        as (entry) {
+          if (/\.css$/.test(entry)) return 'style'
+          if (/\.(woff||ttf)$/.test(entry)) return 'font'
+          if (/\.png$/.test(entry)) return 'image'
+          return 'script'
+        },
+        include: 'allAssets',
+        fileBlacklist: [/\.map$/, /hot-update\.js$/]
+      }
+      return options
+    })
 
     const svgRule = config.module.rule('svg')
     svgRule.uses.clear()
@@ -99,9 +122,20 @@ const vueConfig = {
 
   // disable source map in production
   productionSourceMap: false,
+
   lintOnSave: undefined,
+
   // babel-loader no-ignore node_modules/*
-  transpileDependencies: []
+  transpileDependencies: [],
+
+  pluginOptions: {
+    i18n: {
+      locale: 'zh-CN',
+      fallbackLocale: 'zh-CN',
+      localeDir: 'lang',
+      enableInSFC: true
+    }
+  }
 }
 
 // preview.pro.loacg.com only do not use in your production;

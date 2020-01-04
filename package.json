@@ -8,6 +8,7 @@
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "build:preview": "vue-cli-service build --mode preview",
+    "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/lang/**/*.json'",
     "lint:fix": "vue-cli-service lint --fix"
   },
   "dependencies": {
@@ -26,15 +27,17 @@
     "vue": "^2.6.10",
     "vue-clipboard2": "^0.2.1",
     "vue-cropper": "0.4.9",
+    "vue-i18n": "^8.0.0",
     "vue-ls": "^3.2.1",
     "vue-quill-editor": "^3.0.6",
     "vue-router": "^3.1.2",
+    "vue-svg-component-runtime": "^1.0.1",
     "vuex": "^3.1.1",
-    "wangeditor": "^3.1.1",
-    "vue-svg-component-runtime": "^1.0.1"
+    "wangeditor": "^3.1.1"
   },
   "devDependencies": {
     "@ant-design/colors": "^3.2.1",
+    "@kazupon/vue-i18n-loader": "^0.3.0",
     "@vue/cli-plugin-babel": "^4.0.4",
     "@vue/cli-plugin-eslint": "^4.0.4",
     "@vue/cli-plugin-router": "^4.0.4",
@@ -49,12 +52,14 @@
     "eslint": "^5.16.0",
     "eslint-plugin-html": "^5.0.0",
     "eslint-plugin-vue": "^5.2.3",
+    "imagemin-webpack-plugin": "^2.4.2",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
-    "vue-template-compiler": "^2.6.10",
-    "vue-svg-icon-loader": "^2.1.1",
-    "webpack-theme-color-replacer": "^1.2.17",
     "opencollective": "^1.0.3",
-    "opencollective-postinstall": "^2.0.2"
+    "opencollective-postinstall": "^2.0.2",
+    "vue-cli-plugin-i18n": "^0.6.0",
+    "vue-svg-icon-loader": "^2.1.1",
+    "vue-template-compiler": "^2.6.10",
+    "webpack-theme-color-replacer": "^1.2.17"
   }
 }
